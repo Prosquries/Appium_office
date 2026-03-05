@@ -22,6 +22,7 @@ print("\n Choose Options below:")
 print("1. Call")
 print("2. Message")
 print("3. Details")
+print("4. Create new Contact")
 
 choice = input("Enter the choice with number:")
 
@@ -114,6 +115,43 @@ match choice:
 
         except:
             print("Unable to call")
+
+    case "4":
+        try:
+            wait.until(EC.presence_of_element_located(
+                (AppiumBy.XPATH, "//android.widget.Button[@content-desc='Create contact']"))).click()
+            print("Adding the new contact...")
+        except:
+            print("Failed to add the new contact...")
+
+        try:
+            Name = input("Please enter the name of the contact: ")
+            wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, "//android.widget.EditText[@text='Name']"))).send_keys(Name)
+            print("Adding the name of the new contact...")
+        except:
+            print("Failed to add the name...")
+
+            # FIXED NUMBER PART
+        try:
+            wait.until(EC.element_to_be_clickable((AppiumBy.XPATH,
+                                                   "(//android.widget.RelativeLayout[@resource-id='com.samsung.android.app.contacts:id/titleLayout'])[1]"))).click()
+            time.sleep(2)
+            Number = str(input("Please enter the number of the contact: "))
+            wait.until(EC.presence_of_element_located((AppiumBy.XPATH, "//android.widget.EditText[@text='Phone']"))).send_keys(
+                Number)
+            print("Adding the phone number...")
+        except:
+            print("Failed to add the phone number...")
+
+        try:
+            wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, "//android.widget.Button[@text='Save']"))).click()
+            print("Saved the new contact...")
+        except:
+            print("Failed to save the new contact...")
+
+
+if choice <= "5":
+    print("Please enter valid option next time")
 
 
 time.sleep(3)
