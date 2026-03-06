@@ -26,7 +26,6 @@ print("4. Create new Contact")
 
 choice = input("Enter the choice with number:")
 
-
 match choice:
     case "3":
         try:
@@ -153,6 +152,8 @@ match choice:
 if choice <= "5":
     print("Please enter valid option next time")
 
+else:
+    print("The code work as expected")
 
 time.sleep(3)
 

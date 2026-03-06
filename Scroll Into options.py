@@ -4,6 +4,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
@@ -12,8 +13,10 @@ options = UiAutomator2Options()
 options.platform_name = "Android"
 options.device_name = "RZCY1212F1W"
 options.automation_name = "UiAutomator2"
-options.app_package = "com.android.settings"
-options.app_activity = ".Settings"
+# options.app_package = "com.android.settings"
+# options.app_activity = ".Settings"
+options.app_package = "io.appium.android.apis"
+options.app_activity = "io.appium.android.apis.ApiDemos"
 
 driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
 wait = WebDriverWait(driver, 10)
@@ -45,6 +48,7 @@ wait = WebDriverWait(driver, 10)
 # end_X = Screen_Width/2
 # Start_Y = Screen_Height*8/9
 # end_Y = Screen_Height/9
+
 # # Down operations
 # finger = PointerInput("touch", "finger")
 # actions = ActionBuilder(driver, mouse=finger)
@@ -80,7 +84,7 @@ wait = WebDriverWait(driver, 10)
 # driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,'new UiScrollable(new UiSelector().scrollable(true)).setAsVerticalList().scrollToBeginning(5)')
 # driver.quit()
 
-# # Another method to scroll vertically - This method is to scroll down to up in single scroll but they might not reach at the end
+# # Another method to scroll vertically - This method is to scroll down to up in single scroll, but they might not reach at the end
 
 # driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,'new UiScrollable(new UiSelector().scrollable(true)).scrollForward(2)')
 # time.sleep(2)
@@ -88,4 +92,19 @@ wait = WebDriverWait(driver, 10)
 # time.sleep(1)
 # driver.quit()
 
+# Scrolling by api demos app
 
+try:
+    wait.until(EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID,"Views"))).click()
+    print("Clicking the Views option")
+except:
+    print("Failed to click the Views option")
+
+try:
+    Tabs=driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,'new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("Tabs"))')
+    Tabs.click()
+    print("Scrolling till tab section")
+except:
+    print("Failed to scroll till tab section")
+
+driver.quit()
