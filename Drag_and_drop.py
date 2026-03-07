@@ -19,25 +19,31 @@ driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
 wait = WebDriverWait(driver, 10)
 
 try:
-    wait.until(EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID,"go-to-drag-drop-screen"))).click()
-    print("Clicking on drag and drop screen")
+    wait.until(EC.presence_of_element_located((AppiumBy.XPATH,"//android.widget.Button[@text = '08 DRAG AND DROP']"))).click()
+    print("Printing the Drag and drop option")
 except:
-    print("Failed to click on drag and drop section")
+    print("Unable to click on Drag and drop option")
 
-try:
-    finger = PointerInput("touch", "finger")
-    actions = ActionBuilder(driver, mouse=finger)
+Ghost = driver.find_element(AppiumBy.XPATH,"//android.widget.ImageView[@resource-id = 'com.expandtesting.practice:id/paper']")
+Bin = driver.find_element(AppiumBy.XPATH,"//android.widget.ImageView[@resource-id = 'com.expandtesting.practice:id/trash']")
 
-    actions.pointer_action.move_to_location(720, 507)
-    actions.pointer_action.pointer_down()
-    actions.pointer_action.pause(1)
-    actions.pointer_action.move_to_location(1005, 2441.5)
-    actions.pointer_action.pointer_up()
 
-    actions.perform()
-    print("Successfully moved object/Ghost to Bin")
-except:
-    print("Failed to move object/Ghost to Bin")
+sx = Ghost.location['x'] + Ghost.size['width']/2
+sy = Ghost.location['y'] + Ghost.size['height']/2
+
+tx = Bin.location['x'] + Bin.size['width']/2
+ty = Bin.location['y'] + Bin.size['height']/2
+
+finger = PointerInput("touch","finger")
+actions = ActionBuilder(driver, mouse = finger)
+
+actions.pointer_action.move_to_location(sx,sy)
+actions.pointer_action.pointer_down()
+actions.pointer_action.pause(1)
+actions.pointer_action.move_to_location(tx,ty)
+actions.pointer_action.pointer_up()
+
+actions.perform()
 
 time.sleep(2)
 driver.quit()
