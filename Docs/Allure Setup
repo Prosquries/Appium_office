@@ -1,0 +1,21 @@
+Commands we should run to setup allure report
+
+1. Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+
+2. scope install allure
+
+If still allure fails then try this
+
+3. \bin\checkver.ps1 allure -u
+
+4. scope update allure
+
+Now to run allure in pytest use Terminal and add this in last
+
+--aluredir="/allureReport"
+
+After the test there will be multiple files will be created in the allureReport folder
+If u want a report than follow this command -
+
+allure serve allureRepport
