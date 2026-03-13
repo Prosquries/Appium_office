@@ -9,40 +9,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 
 driver = None
 
-@pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    report = outcome.get_result()
-
-    if report.when == "call" and report.failed:
-        global driver
-        if driver:
-            allure.attach(driver.get_screenshot_as_png(), name="Failure Screenshot", attachment_type=AttachmentType.PNG)
 
 class TestClass:
-
-    @pytest.fixture()
-    def Setup(self):
-        #global appium_service
-        self.appium_service = AppiumService()
-        self.appium_service.start()
-
-        global driver
-
-        options = UiAutomator2Options()
-
-        options.platform_name = "Android"
-        options.device_name = "RZCY1212F1W"
-        options.automation_name = "UiAutomator2"
-        options.app_package = "com.android.settings"
-        options.app_activity = ".Settings"
-
-        driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
-        yield
-
-        time.sleep(2)
-        driver.quit()
-
 
     def test_VerticalScroll(self,Setup):
         time.sleep(2)
@@ -84,7 +52,5 @@ class TestClass:
         if bluetooth_status:
             assert True, "The Bluetooth status is already true"
 
-        # allure.attach(driver.get_screenshot_as_png(),name="Alert SS",attachment_type=AttachmentType.PNG)
+        allure.attach(driver.get_screenshot_as_png(),name="Alert SS",attachment_type=AttachmentType.PNG)
 
-# python -m pytest -s -v .\Test_AppiumIntegration.py --html=Docs/report.html This is the code to generate the HTML report
-# python -m pytest -s -v .\Test_AppiumIntegration.py::TestClass:test_Blutooth - This command is to run the particular test from test cases
