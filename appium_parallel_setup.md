@@ -198,7 +198,7 @@ Check connected devices:
 
 Check current activity:
 
-    adb shell dumpsys window | findstr mCurrentFocus
+    adb -s device uid shell dumpsys window | findstr mCurrentFocus
 
 ------------------------------------------------------------------------
 

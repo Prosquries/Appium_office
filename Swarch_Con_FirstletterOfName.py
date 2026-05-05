@@ -8,7 +8,7 @@ import time
 options = UiAutomator2Options()
 
 options.platform_name = "Android"
-options.device_name = "RZCY1212F1W"
+options.device_name = "192.168.1.11:45551"
 options.automation_name = "UiAutomator2"
 options.app_package = "com.samsung.android.app.contacts"
 options.app_activity = "com.samsung.android.contacts.contactslist.PeopleActivity"

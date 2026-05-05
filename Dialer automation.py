@@ -33,7 +33,7 @@ except:
 time.sleep(1)
 
 try:
-    wait.until(EC.element_to_be_clickable((AppiumBy.XPATH,"//android.widget.ImageView[@resource-id = 'com.samsung.android.dialer:id/dialButtonImage']"))).click()
+    wait.until(EC.element_to_be_clickable((AppiumBy.ANDROID_UIAUTOMATOR,'new UiSelector().resourceId("com.samsung.android.dialer:id/dialButton'))).click()
     print("Calling")
 
 except:
@@ -46,7 +46,9 @@ try:
     print("Call is ended")
 
 except:
-    print("Unable to call")
+    print("Unable to end the call")
 
 
 driver.quit()
+
+# This code is now not working in S25 u

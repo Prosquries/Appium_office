@@ -1,0 +1,1 @@
+{"name": "test_parallel[device2]", "status": "passed", "parameters": [{"name": "appium_driver", "value": "'device2'"}], "start": 1773642627286, "stop": 1773642652704, "uuid": "1e73288f-c50b-40ce-9355-97b5efd7aacf", "testCaseId": "fe916551ceb2b4842a5053006db03bc6", "fullName": "Test_Assignment5_Zipang#test_parallel", "titlePath": ["Test_Assignment5_Zipang.py"]}
