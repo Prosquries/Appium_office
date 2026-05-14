@@ -653,7 +653,7 @@ def test_workflow():
 
         wait.until(EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR,f'new UiScrollable(new UiSelector().scrollable(true))'f'.scrollIntoView(new UiSelector().text("{Number}"))')))
 
-        wait.until(EC.element_to_be_clickable((AppiumBy.ANDROID_UIAUTOMATOR,f'new UiSelector().description("+, $ {Bulk_bid}")'))).click()
+        wait.until(EC.element_to_be_clickable((AppiumBy.ANDROID_UIAUTOMATOR,f'new UiSelector().text("+, $ {Bulk_bid}")'))).click()
         print(f"Placing a bid on {Number} of ${Bulk_bid}")
         time.sleep(1)
         wait.until(EC.element_to_be_clickable((AppiumBy.ANDROID_UIAUTOMATOR,"new UiSelector().text(\"Proceed\")"))).click()
